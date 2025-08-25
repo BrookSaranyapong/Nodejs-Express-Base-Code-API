@@ -1,4 +1,4 @@
-const { z } = require("zod");
+const { z } = require('zod');
 
 exports.PaginationQuerySchema = z
   .object({

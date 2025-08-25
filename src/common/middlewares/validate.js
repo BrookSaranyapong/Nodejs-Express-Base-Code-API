@@ -1,6 +1,6 @@
-const { ZodError } = require("zod");
+const { ZodError } = require('zod');
 
-const PARTS = { body: "body", query: "query", params: "params" };
+const PARTS = { body: 'body', query: 'query', params: 'params' };
 
 function validate(schema, part = PARTS.body) {
   return (req, _res, next) => {

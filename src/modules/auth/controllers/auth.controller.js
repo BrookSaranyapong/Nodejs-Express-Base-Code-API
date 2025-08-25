@@ -1,10 +1,8 @@
 // src/modules/auth/controllers/auth.controller.js
-const Response = require("../../../common/utils/response");
-const { HttpStatus } = require("../../../common/constants/statusCode");
-const {
-  SUCCESS,
-} = require("../../../common/constants/responses/success-message");
-const AuthService = require("../services/auth.service");
+const Response = require('../../../common/utils/response');
+const { HttpStatus } = require('../../../common/constants/statusCode');
+const { SUCCESS } = require('../../../common/constants/responses/success-message');
+const AuthService = require('../services/auth.service');
 
 class AuthController {
   // POST /auth/register
@@ -12,12 +10,7 @@ class AuthController {
     try {
       const user = await AuthService.register(req.body);
 
-      return Response.success(
-        res,
-        SUCCESS[201].SUCCESS_RESPONSE,
-        user,
-        HttpStatus.CREATED
-      );
+      return Response.success(res, SUCCESS[201].SUCCESS_RESPONSE, user, HttpStatus.CREATED);
     } catch (err) {
       next(err);
     }
@@ -28,12 +21,7 @@ class AuthController {
     try {
       const data = await AuthService.login(req.body);
 
-      return Response.success(
-        res,
-        SUCCESS[200].SUCCESS_RESPONSE,
-        data,
-        HttpStatus.OK
-      );
+      return Response.success(res, SUCCESS[200].SUCCESS_RESPONSE, data, HttpStatus.OK);
     } catch (err) {
       next(err);
     }
@@ -44,12 +32,7 @@ class AuthController {
     try {
       const tokens = await AuthService.refresh(req.body);
 
-      return Response.success(
-        res,
-        SUCCESS[200].SUCCESS_RESPONSE,
-        tokens,
-        HttpStatus.OK
-      );
+      return Response.success(res, SUCCESS[200].SUCCESS_RESPONSE, tokens, HttpStatus.OK);
     } catch (err) {
       next(err);
     }
@@ -60,12 +43,7 @@ class AuthController {
     try {
       await AuthService.logout(req.body);
 
-      return Response.success(
-        res,
-        SUCCESS[200].SUCCESS_RESPONSE,
-        { ok: true },
-        HttpStatus.OK
-      );
+      return Response.success(res, SUCCESS[200].SUCCESS_RESPONSE, { ok: true }, HttpStatus.OK);
     } catch (err) {
       next(err);
     }
@@ -75,12 +53,7 @@ class AuthController {
   async logoutAll(req, res, next) {
     try {
       await AuthService.logoutAll(req.user.id);
-      return Response.success(
-        res,
-        SUCCESS[200].SUCCESS_RESPONSE,
-        { ok: true },
-        HttpStatus.OK
-      );
+      return Response.success(res, SUCCESS[200].SUCCESS_RESPONSE, { ok: true }, HttpStatus.OK);
     } catch (err) {
       next(err);
     }
@@ -88,12 +61,7 @@ class AuthController {
 
   // GET /auth/me (ต้องมี requireAuth set req.user)
   async me(req, res) {
-    return Response.success(
-      res,
-      SUCCESS[200].SUCCESS_RESPONSE,
-      { user: req.user },
-      HttpStatus.OK
-    );
+    return Response.success(res, SUCCESS[200].SUCCESS_RESPONSE, { user: req.user }, HttpStatus.OK);
   }
 }
 

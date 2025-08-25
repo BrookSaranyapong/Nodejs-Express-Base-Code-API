@@ -1,4 +1,4 @@
-const argon2 = require("argon2");
+const argon2 = require('argon2');
 
 const ARGON_OPTS = {
   type: argon2.argon2id, // use Argon2id
@@ -9,5 +9,4 @@ const ARGON_OPTS = {
 const hashPassword = (plain) => argon2.hash(plain, ARGON_OPTS);
 const verifyPassword = (plain, hash) => argon2.verify(hash, plain);
 
-
-module.exports = { hashPassword,verifyPassword }
+module.exports = { hashPassword, verifyPassword };

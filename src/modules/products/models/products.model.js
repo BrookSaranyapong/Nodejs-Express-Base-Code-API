@@ -1,8 +1,8 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   const Product = sequelize.define(
-    "products",
+    'products',
     {
       id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
       name: { type: DataTypes.STRING(191), allowNull: false },

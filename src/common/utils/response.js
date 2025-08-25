@@ -28,7 +28,7 @@ class Response {
           message_en: constant.MESSAGE_EN,
         },
       },
-      service: APP_NAME | "jwt-backend",
+      service: APP_NAME | 'jwt-backend',
     });
   }
 }

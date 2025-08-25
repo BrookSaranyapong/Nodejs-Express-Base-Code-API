@@ -1,6 +1,5 @@
-const { Model, DataTypes } = require("sequelize");
-const { sequelize } = require("../../../configs/db")
-
+const { Model, DataTypes } = require('sequelize');
+const { sequelize } = require('../../../configs/db');
 
 class RefreshToken extends Model {}
 RefreshToken.init(
@@ -14,8 +13,8 @@ RefreshToken.init(
   },
   {
     sequelize,
-    modelName: "RefreshToken",
-    tableName: "refresh_tokens",
+    modelName: 'RefreshToken',
+    tableName: 'refresh_tokens',
     timestamps: true,
   }
 );

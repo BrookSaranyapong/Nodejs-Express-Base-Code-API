@@ -12,7 +12,7 @@ const verifyRefresh = (t) => {
   jwt.verify(t, REFRESH_SECRET);
 };
 const sha256 = (s) => {
-  createHash("sha256").update(s).digest("hex");
+  createHash('sha256').update(s).digest('hex');
 };
 
 module.exports = {

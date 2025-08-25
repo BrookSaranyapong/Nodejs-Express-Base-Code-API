@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 // const productRouter = require('./modules/products');
 const errorHandler = require('./common/middlewares/errorHandler');
-require('dotenv').config()
+require('dotenv').config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

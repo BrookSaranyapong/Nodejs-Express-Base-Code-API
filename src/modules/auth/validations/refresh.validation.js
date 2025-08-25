@@ -1,4 +1,4 @@
-const { z } = require("./validate");
+const { z } = require('./validate');
 
 exports.refreshSchema = z
   .object({

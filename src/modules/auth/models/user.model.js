@@ -1,6 +1,6 @@
 // modules/auth/models/user.model.js
-const { Model, DataTypes } = require("sequelize");
-const { sequelize } = require("../../../configs/db");
+const { Model, DataTypes } = require('sequelize');
+const { sequelize } = require('../../../configs/db');
 
 class User extends Model {}
 User.init(
@@ -9,7 +9,7 @@ User.init(
     passwordHash: { type: DataTypes.STRING, allowNull: false },
     name: { type: DataTypes.STRING },
   },
-  { sequelize, modelName: "User", tableName: "users", timestamps: true }
+  { sequelize, modelName: 'User', tableName: 'users', timestamps: true }
 );
 
 module.exports = User;
