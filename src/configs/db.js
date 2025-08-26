@@ -6,4 +6,11 @@ const sequelize = new Sequelize({
   logging: false,
 });
 
-module.exports = { sequelize };
+
+async function syncDB() {
+  await sequelize.authenticate();
+  await sequelize.sync();
+}
+
+
+module.exports = { sequelize, syncDB };
