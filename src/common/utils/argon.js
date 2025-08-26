@@ -1,12 +1,24 @@
+// utils/argon.js
 const argon2 = require('argon2');
 
-const ARGON_OPTS = {
-  type: argon2.argon2id, // use Argon2id
-  memoryCost: 19456, // ~19MB; raise to 64MB+ if you can
-  timeCost: 2, // iterations
-  parallelism: 1, // threads
-};
-const hashPassword = (plain) => argon2.hash(plain, ARGON_OPTS);
-const verifyPassword = (plain, hash) => argon2.verify(hash, plain);
+class ArgonService {
+  constructor(options = {}) {
+    this.options = {
+      type: argon2.argon2id,
+      memoryCost: 19456,
+      timeCost: 2,
+      parallelism: 1,
+      ...options,
+    };
+  }
 
-module.exports = { hashPassword, verifyPassword };
+  hashPassword = async (plain) => {
+    return argon2.hash(plain, this.options);
+  };
+
+  verifyPassword = async (plain, hash) => {
+    return argon2.verify(hash, plain);
+  };
+}
+
+module.exports = ArgonService;

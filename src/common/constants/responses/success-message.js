@@ -2,25 +2,25 @@ const { HttpStatus } = require('../statusCode');
 
 exports.SUCCESS = {
   [200]: {
-    SUCCESS_RESPONSE: {
+    SUCCESS_RESPONSE_200: {
       HTTP: HttpStatus.OK,
       CODE: 2000,
       MESSAGE_TH: 'สำเร็จ',
       MESSAGE_EN: 'Success',
     },
-    LOGIN_SUCCESS: {
+    LOGIN_SUCCESS_200: {
       HTTP: HttpStatus.OK,
       CODE: 2001,
       MESSAGE_TH: 'เข้าสู่ระบบสำเร็จ',
       MESSAGE_EN: 'Login successful',
     },
-    REFRESH_SUCCESS: {
+    REFRESH_SUCCESS_200: {
       HTTP: HttpStatus.OK,
       CODE: 2002,
       MESSAGE_TH: 'ต่ออายุโทเคนสำเร็จ',
       MESSAGE_EN: 'Token refreshed successfully',
     },
-    LOGOUT_SUCCESS: {
+    LOGOUT_SUCCESS_200: {
       HTTP: HttpStatus.OK,
       CODE: 2003,
       MESSAGE_TH: 'ออกจากระบบสำเร็จ',
@@ -28,13 +28,13 @@ exports.SUCCESS = {
     },
   },
   [201]: {
-    SUCCESS_RESPONSE: {
+    SUCCESS_RESPONSE_201: {
       HTTP: HttpStatus.CREATED,
       CODE: 2010,
       MESSAGE_TH: 'สร้างข้อมูลสำเร็จ',
       MESSAGE_EN: 'Created successfully',
     },
-    REGISTER_SUCCESS: {
+    REGISTER_SUCCESS_201: {
       HTTP: HttpStatus.CREATED,
       CODE: 2011,
       MESSAGE_TH: 'สมัครสมาชิกสำเร็จ',
