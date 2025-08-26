@@ -38,9 +38,15 @@ exports.ERROR = {
   },
 
   [401]: {
-    UNAUTHORIZATION_ERROR: {
+    TOKEN_EXPIRE_401: {
       HTTP: HttpStatus.UNAUTHORIZED,
       CODE: 4010,
+      MESSAGE_TH: 'เซสชั่นหมดอายุ',
+      MESSAGE_EN: 'Token Expire',
+    },
+    UNAUTHORIZATION_ERROR: {
+      HTTP: HttpStatus.UNAUTHORIZED,
+      CODE: 4011,
       MESSAGE_TH: 'ไม่สามารถเข้าถึงได้',
       MESSAGE_EN: 'UNAUTHORIZED',
     },

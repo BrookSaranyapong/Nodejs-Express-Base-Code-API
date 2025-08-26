@@ -1,0 +1,3 @@
+exports.headers = {
+  AUTHORIZATION: 'authorization',
+};

@@ -1,4 +1,6 @@
-exports.JWT_CONST = {
+exports.CONFIG = {
+  APP_NAME: process.env.NAME || 'jwt-backend',
+  DEFAULT_SERVICE: process.env.SERVICE_NAME || 'CORE-SERVICE',
   ACCESS_SECRET: process.env.JWT_ACCESS_SECRET || 'access_secret',
   REFRESH_SECRET: process.env.JWT_REFRESH_SECRET || 'refresh_secret',
   ACCESS_TTL: process.env.ACCESS_TOKEN_TTL || '15m',
