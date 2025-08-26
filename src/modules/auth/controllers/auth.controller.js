@@ -18,7 +18,7 @@ class AuthController {
   async login(req, res, next) {
     try {
       const data = await AuthService.login(req.body);
-      return Response.success(res, SUCCESS[200].SUCCESS_RESPONSE_200, data, HttpStatus.OK);
+      return Response.success(res, SUCCESS[200].LOGIN_SUCCESS_200, data, HttpStatus.OK);
     } catch (err) {
       next(err);
     }
@@ -28,7 +28,7 @@ class AuthController {
   async refresh(req, res, next) {
     try {
       const tokens = await AuthService.refresh(req.body);
-      return Response.success(res, SUCCESS[200].SUCCESS_RESPONSE_200, tokens, HttpStatus.OK);
+      return Response.success(res, SUCCESS[200].REFRESH_SUCCESS_200, tokens, HttpStatus.OK);
     } catch (err) {
       next(err);
     }
@@ -38,17 +38,7 @@ class AuthController {
   async logout(req, res, next) {
     try {
       await AuthService.logout(req.body);
-      return Response.success(res, SUCCESS[200].SUCCESS_RESPONSE_200, { ok: true }, HttpStatus.OK);
-    } catch (err) {
-      next(err);
-    }
-  }
-
-  // POST /auth/logout-all (ต้องมี requireAuth set req.user)
-  async logoutAll(req, res, next) {
-    try {
-      await AuthService.logoutAll(req.user.id);
-      return Response.success(res, SUCCESS[200].SUCCESS_RESPONSE_200, { ok: true }, HttpStatus.OK);
+      return Response.success(res, SUCCESS[200].LOGOUT_SUCCESS_200, { ok: true }, HttpStatus.OK);
     } catch (err) {
       next(err);
     }
