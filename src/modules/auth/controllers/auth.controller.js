@@ -1,7 +1,7 @@
 const Response = require('../../../common/utils/response-utils');
-const { HttpStatus } = require('../../../common/constants/statusCode');
 const { SUCCESS } = require('../../../common/constants/responses/success-message');
 const AuthService = require('../services/auth.service');
+const { HttpStatus } = require('../../../common/constants/http-status');
 
 class AuthController {
   // POST /auth/register
@@ -46,7 +46,7 @@ class AuthController {
 
   // GET /auth/me (ต้องมี requireAuth set req.user)
   async me(req, res) {
-    return Response.success(res, SUCCESS[200].SUCCESS_RESPONSE_200, { user: req.user }, HttpStatus.OK);
+    return Response.success(res, SUCCESS[200].SUCCESS_RESPONSE_200, req.user, HttpStatus.OK, 'Auth');
   }
 }
 

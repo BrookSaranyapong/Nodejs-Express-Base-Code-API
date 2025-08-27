@@ -1,4 +1,5 @@
 const { Sequelize } = require('sequelize');
+const path = require('path');
 
 const sequelize = new Sequelize({
   dialect: 'sqlite',
@@ -6,11 +7,14 @@ const sequelize = new Sequelize({
   logging: false,
 });
 
-
 async function syncDB() {
-  await sequelize.authenticate();
-  await sequelize.sync();
+  try {
+    await sequelize.authenticate();
+    await sequelize.sync();
+    console.log('Database Connection successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
 }
-
 
 module.exports = { sequelize, syncDB };

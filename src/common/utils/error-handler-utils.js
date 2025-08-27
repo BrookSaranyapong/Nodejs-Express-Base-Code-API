@@ -1,8 +1,8 @@
-const ApplicationError = require('./application-error');
+const ApplicationError = require('../errors/application-error');
 const { ERROR } = require('../constants/responses/error-message');
 const HANDLERS = require('../errors/error-map');
 
-function normalize(err) {
+function errorHandlerUtils(err) {
   if (err instanceof ApplicationError) return err;
 
   const handler = HANDLERS[err?.name];
@@ -18,4 +18,4 @@ function normalize(err) {
   });
 }
 
-module.exports = { normalize };
+module.exports = { errorHandlerUtils };

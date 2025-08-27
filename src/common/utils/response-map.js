@@ -1,19 +1,28 @@
-const { APP_NAME, DEFAULT_SERVICE } = require('../constants/config');
+const { CONFIG: { APP_NAME, SERVICE_NAME } } = require('../constants/config');
 
-const composeService = (suffix) => (suffix ? `${DEFAULT_SERVICE} ${suffix}` : DEFAULT_SERVICE);
+const composeService = (suffix) => (suffix ? `${SERVICE_NAME} ${suffix}` : SERVICE_NAME);
 
-function buildResponse({ constant, data = null, pagination = null, details = null, serviceSuffix = null }) {
+// SUCCESS
+function mapSuccess(constant, data = null, serviceSuffix = null, pagination = null) {
   return {
+    success: true,
     status: {
       code: constant.CODE,
       message: {
         TH: constant.MESSAGE_TH,
         EN: constant.MESSAGE_EN,
       },
-      ...(!success && details ? { details } : {}),
+      ...(constant.created_at ? { created_at: constant.created_at } : {}),
     },
     ...(pagination
-      ? { data: { result: data ?? [], page: pagination.page, limit: pagination.limit, total: pagination.total } }
+      ? {
+          data: {
+            result: data ?? [],
+            page: pagination.page,
+            limit: pagination.limit,
+            total: pagination.total,
+          },
+        }
       : data !== null && data !== undefined
       ? { data }
       : {}),
@@ -24,8 +33,23 @@ function buildResponse({ constant, data = null, pagination = null, details = nul
   };
 }
 
-exports.mapSuccess = (constant, data = null, serviceSuffix = null, pagination = null) =>
-  buildResponse({ constant, data, pagination, serviceSuffix });
+// ERROR
+function mapError(constant, details = null, serviceSuffix = null) {
+  return {
+    success: false,
+    status: {
+      code: constant.CODE,
+      message: {
+        TH: constant.MESSAGE_TH,
+        EN: constant.MESSAGE_EN,
+      },
+      ...(details ? { details } : {}),
+    },
+    service: {
+      app_name: APP_NAME,
+      core_services: composeService(serviceSuffix),
+    },
+  };
+}
 
-exports.mapError = (constant, details = null, serviceSuffix = null) =>
-  buildResponse({ constant, details, serviceSuffix });
+module.exports = { mapSuccess, mapError };

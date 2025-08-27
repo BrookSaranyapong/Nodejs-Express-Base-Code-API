@@ -1,4 +1,3 @@
-const ApplicationError = require('./application-error');
 const { ERROR } = require('../constants/responses/error-message');
 
 const HANDLERS = {

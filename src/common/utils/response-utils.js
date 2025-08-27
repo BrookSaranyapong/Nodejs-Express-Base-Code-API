@@ -1,4 +1,4 @@
-const { mapSuccess, mapError } = require('../common/maps/response-map');
+const { mapSuccess, mapError } = require('./response-map');
 
 class Response {
   static success(res, constant, data = null, httpStatus = 200, services = null, pagination = null) {

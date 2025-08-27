@@ -1,8 +1,8 @@
 const Response = require('../utils/response-utils');
-const { normalize } = require('../utils/error-handler-utils');
+const { errorHandlerUtils } = require('../utils/error-handler-utils');
 
-module.exports = function errorHandler(err, req, res, _next) {
-  const appErr = normalize(err);
+module.exports = function errorHandler(err, req, res, next) {
+  const appErr = errorHandlerUtils(err);
 
   if (process.env.NODE_ENV !== 'production') {
     console.error('[ErrorHandler]', {

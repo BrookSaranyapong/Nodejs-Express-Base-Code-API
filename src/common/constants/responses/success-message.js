@@ -1,4 +1,4 @@
-const { HttpStatus } = require('../statusCode');
+const { HttpStatus } = require("../http-status");
 
 exports.SUCCESS = {
   [200]: {
