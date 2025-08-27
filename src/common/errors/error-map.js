@@ -1,4 +1,5 @@
 const { ERROR } = require('../constants/responses/error-message');
+const ApplicationError = require('./application-error');
 
 const HANDLERS = {
   ZodError: (err) => {
