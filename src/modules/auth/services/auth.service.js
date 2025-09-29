@@ -3,7 +3,6 @@ const { ERROR_MESSAGE } = require('../../../common/constants/responses/error-mes
 
 class AuthService {
   constructor() {
-    // Mock database
     this.users = [
       {
         id: 1,
@@ -32,7 +31,7 @@ class AuthService {
     const existingUser = this.users.find((u) => u.email === email);
     if (existingUser) {
       throw new ApplicationError(ERROR_MESSAGE.BAD_REQUEST_400, {
-        errors: { email: 'Email already exists' },
+        errors: { email: ERROR_MESSAGE.EMAIL_TAKEN_400.MESSAGE_EN },
       });
     }
 

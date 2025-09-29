@@ -36,4 +36,10 @@ router.post('/logout', logout);
 //   getUserById // ต้องมี handler ตรงนี้
 // );
 
+router.get('/users/:id', validateAll({ params: UserIdParamsSchema, query: PaginationQuerySchema }), (req, res) => {
+  const { id } = req.params;
+  const { page, limit } = req.query;
+  res.send({ id, page, limit });
+});
+
 module.exports = router;
