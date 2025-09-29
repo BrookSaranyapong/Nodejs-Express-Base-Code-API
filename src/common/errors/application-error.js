@@ -1,6 +1,6 @@
-const { ERROR } = require('../constants/responses/error-message');
+const { ERROR_MESSAGE } = require('../constants/responses/error-message');
 
-const { INTERNAL_SERVER_500: errors } = ERROR[500];
+const { INTERNAL_SERVER_500: errors } = ERROR_MESSAGE;
 
 module.exports = class ApplicationError extends Error {
   constructor(error = errors, detail) {

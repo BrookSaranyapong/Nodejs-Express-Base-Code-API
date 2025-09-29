@@ -1,53 +1,61 @@
-const Response = require('../../../common/utils/response-utils');
-const { SUCCESS } = require('../../../common/constants/responses/success-message');
+const responseBuilder = require('../../../common/utils/response-builder');
 const AuthService = require('../services/auth.service');
-const { HttpStatus } = require('../../../common/constants/http-status');
 
 class AuthController {
+  constructor() {
+    this.response = responseBuilder;
+    this.authService = AuthService;
+  }
+
   // POST /auth/register
-  async register(req, res, next) {
+  register = async (req, res, next) => {
     try {
-      const user = await AuthService.register(req.body);
-      return Response.success(res, SUCCESS[201].SUCCESS_RESPONSE_201, user, HttpStatus.CREATED);
+      // const user = await this.authService.register(req.body);
+      return this.response.ResponseSuccessWithData(res, { data: 'user' });
     } catch (err) {
       next(err);
     }
-  }
+  };
 
   // POST /auth/login
-  async login(req, res, next) {
+  login = async (req, res, next) => {
     try {
-      const data = await AuthService.login(req.body);
-      return Response.success(res, SUCCESS[200].LOGIN_SUCCESS_200, data, HttpStatus.OK);
+      const data = await this.authService.login(req.body);
+      return this.response.ResponseSuccessWithData(res, data);
     } catch (err) {
       next(err);
     }
-  }
+  };
 
   // POST /auth/refresh
-  async refresh(req, res, next) {
+  refresh = async (req, res, next) => {
     try {
-      const tokens = await AuthService.refresh(req.body);
-      return Response.success(res, SUCCESS[200].REFRESH_SUCCESS_200, tokens, HttpStatus.OK);
+      const tokens = await this.authService.refresh(req.body);
+      return this.response.ResponseSuccessWithData(res, tokens);
     } catch (err) {
       next(err);
     }
-  }
+  };
 
   // POST /auth/logout
-  async logout(req, res, next) {
+  logout = async (req, res, next) => {
     try {
-      await AuthService.logout(req.body);
-      return Response.success(res, SUCCESS[200].LOGOUT_SUCCESS_200, { ok: true }, HttpStatus.OK);
+      await this.authService.logout(req.body);
+      return this.response.ResponseSuccessWithData(res, { ok: true });
     } catch (err) {
       next(err);
     }
-  }
+  };
 
-  // GET /auth/me (ต้องมี requireAuth set req.user)
-  async me(req, res) {
-    return Response.success(res, SUCCESS[200].SUCCESS_RESPONSE_200, req.user, HttpStatus.OK, 'Auth');
-  }
+  // GET /auth/me
+  me = async (req, res, next) => {
+    try {
+      const user = {name: "BrookSaranyapong Testing"}
+      return this.response.ResponseSuccessWithData(res, user);
+    } catch (err) {
+      next(err);
+    }
+  };
 }
 
 module.exports = new AuthController();

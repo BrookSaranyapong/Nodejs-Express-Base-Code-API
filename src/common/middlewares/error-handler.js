@@ -1,29 +1,15 @@
-const Response = require('../utils/response-utils');
-const { errorHandlerUtils } = require('../utils/error-handler-utils'); // หรือ { normalize }
+const { ERROR_MESSAGE } = require('../constants/responses/error-message');
+const ApplicationError = require('../errors/application-error');
 
 module.exports = function errorHandler(err, req, res, next) {
-  const appErr = errorHandlerUtils(err);
-
-  if (process.env.NODE_ENV !== 'production') {
-    console.error('[ErrorHandler]', {
-      name: err?.name,
-      message: err?.message,
-      http: appErr.http,
-      code: appErr.code,
-      details: appErr.details,
-      stack: err?.stack,
-    });
+  try {
+    if (err instanceof ApplicationError) {
+      return next(err);
+    }
+    const applicationError = new ApplicationError(ERROR_MESSAGE.INTERNAL_SERVER_500, err);
+    return next(applicationError);
+  } catch (error) {
+    const fallbackError = new ApplicationError(ERROR_MESSAGE.INTERNAL_SERVER_500, error);
+    return next(fallbackError);
   }
-
-  return Response.error(
-    res,
-    {
-      HTTP: appErr.http,
-      CODE: appErr.code,
-      MESSAGE_TH: appErr.message_th,
-      MESSAGE_EN: appErr.message_en,
-    },
-    appErr.http,
-    appErr.details
-  );
 };

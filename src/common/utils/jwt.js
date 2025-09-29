@@ -1,4 +1,4 @@
-const { CONFIG } = require("../constants/config");
+const { CONFIG } = require('../constants/config');
 
 const signAccess = (payload) => {
   jwt.sign(payload, CONFIG.ACCESS_SECRET, { expiresIn: CONFIG.ACCESS_TTL });
