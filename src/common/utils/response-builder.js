@@ -11,16 +11,16 @@ class ResponseBuilder {
     this.internalError = ERROR_MESSAGE.INTERNAL_SERVER_500;
   }
 
-  ResponseSuccess(res) {
+  ResponseSuccess(res, successMessage = this.successMessage, appName = this.appName) {
     return res.status(this.successMessage.HTTP).send({
       status: {
-        code: this.successMessage.CODE,
+        code: successMessage.CODE,
         message: {
-          TH: this.successMessage.MESSAGE_TH,
-          EN: this.successMessage.MESSAGE_EN,
+          TH: successMessage.MESSAGE_TH,
+          EN: successMessage.MESSAGE_EN,
         },
       },
-      service: this.appName,
+      service: appName,
     });
   }
 
